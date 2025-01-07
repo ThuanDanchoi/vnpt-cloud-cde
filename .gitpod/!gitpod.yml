@@ -11,9 +11,9 @@ tasks:
     command: python lowcode_service.py
 
 ports:
-  - port: 5000 # API server
+  - port: 5000 
     onOpen: open-preview
-  - port: 8080 # AI server
+  - port: 8080 
     onOpen: open-preview
 
 vscode:
