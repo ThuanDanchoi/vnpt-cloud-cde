@@ -1,6 +1,6 @@
 import cohere
 
-api_key = "API_KEY_CUA_BAN"
+api_key = "hQ3Cuu1x0GvcZ6zV7IGlFQ5cXDzawIht0tuj3PFe"
 co = cohere.Client(api_key)
 
 try:

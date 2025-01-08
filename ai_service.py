@@ -3,6 +3,7 @@ import cohere
 from flask import Flask, request, jsonify
 from dotenv import load_dotenv
 
+
 load_dotenv()
 
 COHERE_API_KEY = os.getenv("COHERE_API_KEY")
