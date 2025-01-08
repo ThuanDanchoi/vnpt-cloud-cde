@@ -1,22 +1,6 @@
-image: gitpod/workspace-python:latest
-
 tasks:
   - name: Install dependencies
     init: pip install -r requirements.txt
-
-  - name: Start AI Server
+  - name: Run AI Service
     command: python ai_service.py
 
-  - name: Start LowCode API
-    command: python lowcode_service.py
-
-ports:
-  - port: 5000 
-    onOpen: open-preview
-  - port: 8080 
-    onOpen: open-preview
-
-vscode:
-  extensions:
-    - ms-python.python
-    - ms-toolsai.jupyter
