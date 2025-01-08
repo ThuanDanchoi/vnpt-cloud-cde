@@ -2,7 +2,7 @@ tasks:
   - name: Install dependencies
     init: pip install -r requirements.txt
   - name: Start AI Server
-    command: python ai_server.py
+    command: python ai_service.py
 
 
 
