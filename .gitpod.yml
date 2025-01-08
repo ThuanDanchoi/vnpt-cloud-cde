@@ -1,8 +1,11 @@
 tasks:
-  - name: Install dependencies
-    init: pip install -r requirements.txt
-  - name: Start AI Server
-    command: python ai_service.py
+  - name: AI Service
+    before: |
+      echo "Setting up environment..."
+    init: |
+      pip install -r requirements.txt
+    command: |
+      python ai_service.py
 
 
 
