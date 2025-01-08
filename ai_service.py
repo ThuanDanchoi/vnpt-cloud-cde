@@ -1,19 +1,35 @@
+import os
 import cohere
+from flask import Flask, request, jsonify
+from dotenv import load_dotenv
 
-API_KEY = "hQ3Cuu1x0GvcZ6zV7IGlFQ5cXDzawIht0tuj3PFe"
-co = cohere.Client(API_KEY)
+load_dotenv()
 
-def generate_code(prompt):
-    response = co.generate(
-        model='command-xlarge',
-        prompt=prompt,
-        max_tokens=100,
-        temperature=0.5
-    )
-    return response.generations[0].text
+COHERE_API_KEY = os.getenv("COHERE_API_KEY")
+cohere_client = cohere.Client(COHERE_API_KEY)
+
+app = Flask(__name__)
+
+@app.route("/generate-text", methods=["POST"])
+def generate_text():
+    try:
+     
+        data = request.json
+        prompt = data.get("prompt", "Default prompt if none provided")
+
+      
+        response = cohere_client.generate(
+            model='command-xlarge-nightly',   
+            prompt=prompt,
+            max_tokens=100,
+            temperature=0.7
+        )
+
+        generated_text = response.generations[0].text.strip()
+        return jsonify({"generated_text": generated_text})
+
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
-    prompt = "Write a Python function to calculate Fibonacci numbers"
-    result = generate_code(prompt)
-    print("Generated Code:\n", result)
-
+    app.run(host="0.0.0.0", port=5000)
