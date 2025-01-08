@@ -4,6 +4,7 @@ tasks:
       echo "Setting up environment..."
     init: |
       pip install -r requirements.txt
+      pip install --upgrade pip
     command: |
       python ai_service.py
 
